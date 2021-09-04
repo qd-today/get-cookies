@@ -1,0 +1,8 @@
+{
+   "appName": {
+      "message": "Cookies获取助手"
+   },
+   "description": {
+      "message": "帮助开发者方便的获取到HTTP ONLY的Cookies。"
+   }
+}
