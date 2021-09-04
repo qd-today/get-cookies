@@ -1,6 +1,7 @@
 # get-cookies
 配合私有签到框架使用，一键获取cookies
-推荐使用https://hub.docker.com/r/a76yyyy/qiandao
+
+推荐使用平台：https://hub.docker.com/r/a76yyyy/qiandao
 
 # 简介？
 原本插件是群内获取，据说是被原作者遗弃了几年没更新。
