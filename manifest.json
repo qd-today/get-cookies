@@ -3,11 +3,7 @@
       "scripts": ["background.js"],
       "persistent": false
    },
-   "content_scripts": [ {
-      "js": ["js/cookie.js" ],
-      "matches": [ "http://192.168.0.229/*","http://abc.myds.me/*"]
-   } ],
-   "default_locale": "en",
+   "default_locale": "zh_CN",
    "description": "__MSG_description__",
    "icons": {
       "32": "images/logo32.png",
@@ -15,8 +11,14 @@
       "48": "images/logo48.png",
       "128": "images/logo128.png"
    },
+   "options_ui":{
+      "page": "options/options.html",
+      "open_in_tab": false,
+      "chrome_style": true
+   },
    "manifest_version": 2,
-   "permissions": [ "cookies", "tabs", "http://*/*", "https://*/*"],
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyqfMOCKmBFCyUDyIA2BKpJJhZnwYd4xBvu3B9ppdOQ98LYtK8pEcSGLpyhuzyiwtmlm9faAimQbCjelk1NGs/rkOTQFeC+X4TI4soujKA3v4vW1+QACchIiLCVel3nIJzU2Xq1vdbgP74wMWZ766xUqP4y6nNnGOaFvAWK+CuXPXOlNxbQ5ipNGUDR3MLz+PuLh1HtaMjtXWeJ5ailm8Rhuax9wAo1FcE/DwiRTbv11et/2MTda7Xo/3Z8S7Sc1gDbwHGFYRT931A3a+FUTTwiEDPP4LZmjBxgyknaBnj1Zh46kNYdaN1LFq3/0HloHq/E6B8rHXozqVHucaob+oMwIDAQAB",
+   "permissions": [ "cookies", "storage", "tabs", "\u003Call_urls>"],
    "name": "__MSG_appName__",
-   "version": "0.1.0"
+   "version": "1.0.0"
 }

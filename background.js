@@ -1,7 +1,30 @@
-chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+var listurlarr,format=function(a){
+    var b = (a||"192.168.0.111");
+    listurlarr=b.split(/[\s\n]/);
+    console.log("init",listurlarr);
+},urlcheck=function(a){
+    for(var l in listurlarr){
+        if(a.indexOf(listurlarr[l])>=0){
+            console.log(true);
+            return true
+        }
+    }
+    return false
+};
+chrome.storage.sync.get('targeturl',function (a){
+    format(a.targeturl);
+});
+chrome.storage.onChanged.addListener(function(changes, areaName){
+    if(changes.hasOwnProperty("targeturl")){
+        format(changes.targeturl.newValue);
+        //console.log("true");
+    }
+});
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {//tab页面刷新事件
     //console.log(tab);
-    //if (changeInfo.status === 'loading' && (tab.url.indexOf("在下方填写自己的平台ip地址") != -1 ||tab.url.indexOf("或者是域名地址") != -1)) {
-    if (changeInfo.status === 'loading' && (tab.url.indexOf("192.168.0.229") != -1 ||tab.url.indexOf("abc.myds.me") != -1)) {
+    if (changeInfo.status === 'loading' && urlcheck(tab.url)) {
+        console.log(tab);
+        chrome.tabs.executeScript({file: "js/cookie.js"});
         if (!chrome.runtime.onConnect.hasListeners()) {
             chrome.runtime.onConnect.addListener(function(port) {
                 console.assert(port.name == "get_cookie");

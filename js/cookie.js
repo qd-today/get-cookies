@@ -7,9 +7,9 @@ function onload(func) {
 }
 
 onload(function() {
-    console.log("onload");
+    console.log("getcookieload");
     document.body.setAttribute("get-cookie", "true");
-    window.postMessage("start", "*");
+    window.postMessage("start", "*");//预传递，测试自动填入功能
     window.addEventListener('click', function(event) {      
         var export_btn = event.target;
         var port = chrome.runtime.connect({name: "get_cookie"});
@@ -22,7 +22,8 @@ onload(function() {
             port.onMessage.addListener(function(msg) {
                 if (window.confirm('你确定要此网站获取你' + site + '的Cookies么？')) {
                     export_btn.setAttribute("data-cookie", JSON.stringify(msg));
-                    window.postMessage(msg, "*");
+                    //console.log(msg);
+                    window.postMessage(msg, "*");//传递给页面消息，让网页填上cookies数据
                 } else {
                     return false;
                 }
