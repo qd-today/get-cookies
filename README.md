@@ -1,6 +1,7 @@
 配合私有签到框架使用，一键获取cookies
 
 推荐使用平台 https://github.com/a76yyyy/qiandao
+
 Docker：https://hub.docker.com/r/a76yyyy/qiandao
 
 # 简介
