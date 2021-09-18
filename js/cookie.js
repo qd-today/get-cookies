@@ -9,8 +9,8 @@ function onload(func) {
 onload(function() {
     console.log("getcookieload");
     document.body.setAttribute("get-cookie", "true");
-    window.postMessage("start", "*");//预传递，测试自动填入功能
-    window.addEventListener('click', function(event) {      
+    window.postMessage({"info":"get-cookieModReady"}, "*");//预传递，在签到平台登录主页时自动填入info信息
+    window.addEventListener('click', function(event) {
         var export_btn = event.target;
         var port = chrome.runtime.connect({name: "get_cookie"});
         if (export_btn.getAttribute("data-toggle") == "get-cookie") {
