@@ -20,5 +20,5 @@
    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyqfMOCKmBFCyUDyIA2BKpJJhZnwYd4xBvu3B9ppdOQ98LYtK8pEcSGLpyhuzyiwtmlm9faAimQbCjelk1NGs/rkOTQFeC+X4TI4soujKA3v4vW1+QACchIiLCVel3nIJzU2Xq1vdbgP74wMWZ766xUqP4y6nNnGOaFvAWK+CuXPXOlNxbQ5ipNGUDR3MLz+PuLh1HtaMjtXWeJ5ailm8Rhuax9wAo1FcE/DwiRTbv11et/2MTda7Xo/3Z8S7Sc1gDbwHGFYRT931A3a+FUTTwiEDPP4LZmjBxgyknaBnj1Zh46kNYdaN1LFq3/0HloHq/E6B8rHXozqVHucaob+oMwIDAQAB",
    "permissions": [ "cookies", "storage", "tabs", "\u003Call_urls>"],
    "name": "__MSG_appName__",
-   "version": "1.0.2"
+   "version": "1.0.3"
 }
