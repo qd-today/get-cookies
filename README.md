@@ -33,3 +33,4 @@ v1.0.0 修改匹配及注入方式，添加设定选项方便自行添加需要�
 
 # 鸣谢
 原作者 https://github.com/acgotaku/GetCookies
+
