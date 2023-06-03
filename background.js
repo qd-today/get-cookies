@@ -20,11 +20,11 @@ chrome.storage.onChanged.addListener(function(changes, areaName){
         //console.log("true");
     }
 });
-chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {//tab页面刷新事件
+chrome.tabs.onUpdated.addListener(function(_tabId, changeInfo, tab) {//tab页面刷新事件
     //console.log(tab);
     if (changeInfo.status === 'loading' && urlcheck(tab.url)) {
         console.log(tab);
-        chrome.tabs.executeScript({file: "js/cookie.js"});
+        chrome.scripting.executeScript({target: {tabId : _tabId}, files: ["js/cookie.js"]});
         if (!chrome.runtime.onConnect.hasListeners()) {
             chrome.runtime.onConnect.addListener(function(port) {
                 console.assert(port.name == "get_cookie");
