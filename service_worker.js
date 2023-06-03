@@ -4,7 +4,7 @@ var listurlarr,format=function(a){
     console.log("init",listurlarr);
 },urlcheck=function(a){
     for(var l in listurlarr){
-        if(a.indexOf(listurlarr[l])>=0){
+        if(a && a.indexOf(listurlarr[l])>=0){
             console.log(true);
             return true
         }
@@ -23,8 +23,8 @@ chrome.storage.onChanged.addListener(function(changes, areaName){
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {//tab页面刷新事件
     //console.log(tab);
     if (changeInfo.status === 'loading' && urlcheck(tab.url)) {
-        console.log(tab);
-        chrome.tabs.executeScript({file: "js/cookie.js"});
+        console.log("tab:",tab);
+        chrome.scripting.executeScript({target: {tabId: tab.id},files: ["js/cookie.js"]});
         if (!chrome.runtime.onConnect.hasListeners()) {
             chrome.runtime.onConnect.addListener(function(port) {
                 console.assert(port.name == "get_cookie");

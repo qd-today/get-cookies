@@ -4,7 +4,7 @@ function onload(func) {
     } else {
         window.addEventListener('load', func);
     }
-}
+};
 
 onload(function() {
     console.log("getcookieload");
@@ -30,11 +30,5 @@ onload(function() {
             });
         }
     },false);
-    //添加旧版平台bug修复性兼容过渡//将来弃置//
-    if(location.pathname.indexOf('/edit')>0){
-        old=function() {
-            if(document.querySelector('a.ng-scope[disabled]')){document.querySelector('a.ng-scope[disabled]').removeAttribute("disabled")}}
-        setInterval(old, 1000)
-    }
 });
 
