@@ -1,6 +1,6 @@
 # Get-Cookies 插件
 
-配合 QD 框架使用, 一键获取 Cookies
+一键获取 Cookies 的 Chrome 扩展, 用于配合 QD 框架使用
 
 QD 框架: <https://github.com/qd-today/qd>
 
