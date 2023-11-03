@@ -16,6 +16,9 @@ Docker 容器: <https://hub.docker.com/r/qdtoday/qd>
 
 > 注意: 使用前请进入 Chrome 扩展详情, 打开 `扩展程序选项`, 根据提示填入 QD 框架对应 `ip或域名` 信息.
 
+- ### Screenshots
+<div><img src="./eg1.gif" alt="eg1" width="50%" /></div>
+
 ## Tips
 
 插件目前无法获取在**隐私模式**下访问的网站的 Cookies, (理论上可以, 但个人没有精力实现)
