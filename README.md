@@ -15,6 +15,7 @@ Docker 容器: <https://hub.docker.com/r/qdtoday/qd>
     > 因未上传 Chrome 扩展商店, 仍然无法直接使用, 需要将 `.crx` 扩展名改为 `.zip` 后解压、同上使用.
 
 > 注意: 使用前请进入 Chrome 扩展详情, 打开 `扩展程序选项`, 根据提示填入 QD 框架对应 `ip或域名` 信息.
+> <img src="https://private-user-images.githubusercontent.com/55564669/310198779-ea74c3ba-15da-47d3-94d3-b3d07f4f7cab.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTk4MDgxMTAsIm5iZiI6MTcxOTgwNzgxMCwicGF0aCI6Ii81NTU2NDY2OS8zMTAxOTg3NzktZWE3NGMzYmEtMTVkYS00N2QzLTk0ZDMtYjNkMDdmNGY3Y2FiLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA3MDElMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNzAxVDA0MjMzMFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTkxMzUzNjFkMTg0ODc1YmViMDZiMzg5NjgzNDdmZjc0NTczZjY3ZTlkZGJjOTgyOTI0ZjBjYzRiYmU1ZmU1YmUmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.QI5Ro-KcXFrWi0CdZfdS1dtSuEpo2xAeRzbbZ8vsVwo" width="30%"/>
 
 - ### Screenshots
 <div><img src="./eg1.gif" alt="eg1" width="50%" /></div>
