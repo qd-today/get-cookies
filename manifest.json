@@ -4,21 +4,22 @@
    },
    "default_locale": "zh_CN",
    "description": "__MSG_description__",
+   "host_permissions": [ "\u003Call_urls>" ],
    "icons": {
-      "32": "images/logo32.png",
+      "128": "images/logo128.png",
       "16": "images/logo16.png",
-      "48": "images/logo48.png",
-      "128": "images/logo128.png"
+      "32": "images/logo32.png",
+      "48": "images/logo48.png"
    },
-   "options_ui":{
-      "page": "options/options.html",
-      "open_in_tab": false,
-      "browser_style": true
-   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjghSR3FIf0kfBo+Nj8ifB3jZpjH+V+eH5V25CQVXStuGJjR2GbQSUf1Hb9cZpxK3/l9IPjnJc4+djjz8XpKRcDeDFtt/aUVwBQYraHKnyTAZbUK2ldpc0mQH8xvpT2UUrSaSKT1ebmIoK2kvMf8+oKj1jJPsnJeevrK+ZJrB07A2icJdDN9WF3yjFrSjVe6L+e2GrwsO5SaaLX2Iqq/1kRdvIrZ5Picc7bz1MTTOi1BsGZxkRxX9uRWN1FS2sK3EBaWmZTEAoMriVOUnS89eM8TsRRAwT0bd82CW01x3KE6RewNRp77MrWM4Q5/iwlt90sKrkwCvG9amCYX/JNVYDQIDAQAB",
    "manifest_version": 3,
-   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyqfMOCKmBFCyUDyIA2BKpJJhZnwYd4xBvu3B9ppdOQ98LYtK8pEcSGLpyhuzyiwtmlm9faAimQbCjelk1NGs/rkOTQFeC+X4TI4soujKA3v4vW1+QACchIiLCVel3nIJzU2Xq1vdbgP74wMWZ766xUqP4y6nNnGOaFvAWK+CuXPXOlNxbQ5ipNGUDR3MLz+PuLh1HtaMjtXWeJ5ailm8Rhuax9wAo1FcE/DwiRTbv11et/2MTda7Xo/3Z8S7Sc1gDbwHGFYRT931A3a+FUTTwiEDPP4LZmjBxgyknaBnj1Zh46kNYdaN1LFq3/0HloHq/E6B8rHXozqVHucaob+oMwIDAQAB",
-   "permissions": ["cookies", "storage", "scripting","activeTab"],
-   "host_permissions": [ "\u003Call_urls>"],
    "name": "__MSG_appName__",
-   "version": "2.0.0"
+   "options_ui": {
+      "browser_style": true,
+      "open_in_tab": false,
+      "page": "options/options.html"
+   },
+   "permissions": [ "cookies", "storage", "scripting", "activeTab" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "2.1.0"
 }
