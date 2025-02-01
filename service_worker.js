@@ -40,27 +40,25 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {//tab页面�
                             option2["domain"] = tempurl.hostname;
                         }
                         console.log(option1,option2);
-                        var obj = {};
-                        chrome.cookies.getAll(option1, function(cookies) {
-                            //console.log(cookies);
-                            for (var i in cookies) {
-                                var cookie = cookies[i];
-                                obj[cookie.name] = cookie.value;
-                            }
+                        const obj = {};
+                        const getCookies = (options) => new Promise(resolve => {
+                            chrome.cookies.getAll(options, resolve);
                         });
-                        //查2次//查漏补缺，以防漏掉某些主域名cookies
-                        chrome.cookies.getAll(option2, function(cookies) {
-                            //console.log(cookies);
-                            for (var i in cookies) {
-                                var cookie = cookies[i];
-                                obj[cookie.name] = cookie.value;
-                            }
-                            if(Object.keys(obj).length == 0){
-                                obj={"error":"cookies值为空,清检查是否已登陆"};
-                            }
-                            port.postMessage(obj);
-                            console.log(obj);
-                        });
+                        Promise.all([getCookies(option1), getCookies(option2)])
+                            .then(([cookies1, cookies2]) => {
+                                const processCookie = cookie => obj[cookie.name] = cookie.value;
+                                cookies1.forEach(processCookie);
+                                cookies2.forEach(processCookie);
+                                const result = Object.keys(obj).length === 0 
+                                    ? { error: "cookies值为空，请检查是否已登陆" }
+                                    : obj;
+                                port.postMessage(result);
+                                console.log(result);
+                            })
+                            .catch(error => {
+                                console.error('Cookie获取失败:', error);
+                                port.postMessage({ error: "获取cookies时发生错误" });
+                            });
                     }
                 });
             });
