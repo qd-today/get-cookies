@@ -55,12 +55,12 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {//tab页面�
                                 var cookie = cookies[i];
                                 obj[cookie.name] = cookie.value;
                             }
+                            if(Object.keys(obj).length == 0){
+                                obj={"error":"cookies值为空,清检查是否已登陆"};
+                            }
+                            port.postMessage(obj);
+                            console.log(obj);
                         });
-                        if(Object.keys(obj).length == 0){
-                            obj={"error":"cookies值为空,清检查是否已登陆"};
-                        }
-                        port.postMessage(obj);
-                        console.log(obj);
                     }
                 });
             });
