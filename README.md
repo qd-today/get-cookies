@@ -1,12 +1,19 @@
 # Get-Cookies 插件
 
-一键获取 Cookies 的 Chrome 扩展, 用于配合 QD 框架使用
+一键获取 Cookies 的浏览器扩展, 用于配合 QD 框架使用
 
 QD 框架: <https://github.com/qd-today/qd>
 
 Docker 容器: <https://hub.docker.com/r/qdtoday/qd>
 
+## 浏览器支持
+
+- ✅ Chrome / Chromium (Manifest V3)
+- ✅ Firefox (Manifest V3)
+
 ## 使用方式
+
+### Chrome
 
 推荐形式：前往Chrome商店安装。（非公开扩展只可链接直达）
 [商店页面](https://chromewebstore.google.com/detail/cookies%E8%8E%B7%E5%8F%96%E5%8A%A9%E6%89%8B/mmcdaoockinhaeiljdmjmnjfndpfpklo) 
@@ -17,8 +24,24 @@ Docker 容器: <https://hub.docker.com/r/qdtoday/qd>
 
 2. 前往 [Releases](https://github.com/qd-today/get-cookies/releases/latest) 下载安装打包好的 `.crx` 文件.
 
+### Firefox
 
-> 注意: 使用前请进入 Chrome 扩展详情, 打开 `扩展程序选项`, 根据提示填入 QD 框架对应 `ip或域名` 信息.
+1. 克隆本仓库或下载源码
+
+2. 运行构建脚本生成 Firefox 版本：
+
+```bash
+npm install
+npm run build:firefox
+```
+
+3. 打开 Firefox，访问 `about:debugging`
+
+4. 点击"此 Firefox" → "临时载入附加组件"
+
+5. 选择 `firefox/manifest.json` 文件
+
+> 注意: 使用前进入扩展选项页，根据提示填入 QD 框架对应 `ip或域名` 信息。
 > [这里有参考图例](https://github.com/qd-today/get-cookies/issues/11) 
 
 - ### Screenshots
@@ -26,9 +49,11 @@ Docker 容器: <https://hub.docker.com/r/qdtoday/qd>
 
 ## Tips
 
-插件目前无法获取在**隐私模式**下访问的网站的 Cookies, (理论上可以, 但个人没有精力实现)
+插件目前无法获取在**隐私模式**下访问的网站的 Cookies。
 
-但是, 可以使用 Chrome 的 **多用户模式** 来达到隐私模式一样的效果。
+Chrome 用户可以使用 Chrome 的 **多用户模式** 来达到隐私模式一样的效果。
+
+Firefox 用户可以在 `about:addons` 中设置允许在隐私窗口运行。
 
 > 只需要新建一个用户，重新安装本插件（无非是重新导入文件夹一次），在这个用户下同时访问签到平台和需要隐私访问的网站
 >
@@ -62,6 +87,15 @@ Docker 容器: <https://hub.docker.com/r/qdtoday/qd>
 - ### v1.0.0
 
     修改匹配及注入方式，添加设定选项方便自行添加需要启用的网站
+
+## 开发
+
+```bash
+# 构建 Firefox 版本
+npm run build:firefox
+
+# 输出目录: firefox/
+```
 
 ## 鸣谢
 
