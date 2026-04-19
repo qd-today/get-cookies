@@ -40,15 +40,6 @@ firefoxManifest.browser_specific_settings = {
   }
 };
 
-// Firefox 需要声明 content_scripts（动态注入的脚本无扩展 API 权限）
-firefoxManifest.content_scripts = [
-  {
-    matches: ["<all_urls>"],
-    js: ["js/cookie.js"],
-    run_at: "document_idle"
-  }
-];
-
 // 写入文件
 fs.writeFileSync(firefoxManifestPath, JSON.stringify(firefoxManifest, null, 3) + '\n');
 console.log('✓ Generated manifest-firefox.json');

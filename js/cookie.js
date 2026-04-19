@@ -1,3 +1,8 @@
+// Firefox/Chrome API compatibility
+if (typeof browser !== 'undefined' && typeof chrome === 'undefined') {
+    var chrome = browser;
+}
+
 function onload(func) {
     if (document.readyState === "complete") {
         func();
