@@ -1,0 +1,12 @@
+{
+  "name": "get-cookies",
+  "version": "2.2.3",
+  "description": "Cookies 获取助手 - Chrome/Firefox 扩展",
+  "scripts": {
+    "build:firefox": "node build/gen-firefox.js",
+    "build:chrome": "echo 'Chrome version is ready in current directory'",
+    "build": "npm run build:firefox"
+  },
+  "keywords": ["firefox", "chrome", "extension", "cookies", "webextension"],
+  "license": "MIT"
+}
