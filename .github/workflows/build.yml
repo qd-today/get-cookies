@@ -3,6 +3,7 @@ name: Build Extensions
 on:
   push:
     branches: [main, firefox-support]
+    tags: ['v*']
   pull_request:
     branches: [main]
 
@@ -30,7 +31,23 @@ jobs:
 
       - name: Upload Firefox build
         uses: actions/upload-artifact@v4
+        if: ${{ !startsWith(github.ref, 'refs/tags/') }}
         with:
           name: get-cookies-firefox
           path: firefox/
           retention-days: 7
+
+      - name: Package Firefox extension
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          cd firefox
+          zip -r ../GetCookies.${{ github.ref_name }}.firefox.xpi .
+          cd ..
+
+      - name: Upload Firefox release asset
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: GetCookies.${{ github.ref_name }}.firefox.xpi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
