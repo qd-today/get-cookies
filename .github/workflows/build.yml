@@ -1,0 +1,36 @@
+name: Build Extensions
+
+on:
+  push:
+    branches: [main, firefox-support]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Build Firefox extension
+        run: npm run build:firefox
+
+      - name: Verify Chrome manifest
+        run: |
+          node -e "const m = require('./manifest.json'); console.log('Chrome manifest OK:', m.version);"
+
+      - name: Verify Firefox manifest
+        run: |
+          node -e "const m = require('./manifest-firefox.json'); console.log('Firefox manifest OK:', m.version);"
+
+      - name: Upload Firefox build
+        uses: actions/upload-artifact@v4
+        with:
+          name: get-cookies-firefox
+          path: firefox/
+          retention-days: 7
