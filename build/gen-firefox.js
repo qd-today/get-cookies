@@ -17,12 +17,19 @@ const firefoxManifest = { ...chromeManifest };
 // 移除 Chrome Web Store 更新 URL
 delete firefoxManifest.update_url;
 
-// 将 service_worker 改为 scripts（Firefox 需要持久化后台脚本）
+// 移除 Chrome 专用的 key 字段
+delete firefoxManifest.key;
+
+// 将 service_worker 改为 scripts（Firefox MV3 使用 scripts）
 if (firefoxManifest.background && firefoxManifest.background.service_worker) {
   firefoxManifest.background = {
-    scripts: [firefoxManifest.background.service_worker],
-    persistent: false
+    scripts: [firefoxManifest.background.service_worker]
   };
+}
+
+// 移除 MV3 中不再支持的 browser_style
+if (firefoxManifest.options_ui) {
+  delete firefoxManifest.options_ui.browser_style;
 }
 
 // 添加 Firefox 特定的 browser_specific_settings
