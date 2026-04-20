@@ -25,8 +25,6 @@ onload(function() {
                     //console.log("postMessage",msg);//不再在主网页上输出cookies信息
                     //新的方式，打包再发送
                     window.postMessage({"info":"cookieRaw","data":msg}, "*");
-                    //临时保留旧的方式以供旧qd框架也能继续使用
-                    window.postMessage(msg, "*");//传递给页面消息，让网页填上cookies数据
                 } else {
                     return false;
                 }
