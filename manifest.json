@@ -19,7 +19,8 @@
       "open_in_tab": false,
       "page": "options/options.html"
    },
+   "incognito": "split",
    "permissions": [ "cookies", "storage", "scripting", "activeTab" ],
    "update_url": "https://clients2.google.com/service/update2/crx",
-   "version": "2.3.0"
+   "version": "2.3.1"
 }
