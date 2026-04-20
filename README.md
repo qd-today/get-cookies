@@ -35,6 +35,11 @@ Docker 容器: <https://hub.docker.com/r/qdtoday/qd>
 > 同时在该用户的chrome设置里-隐私设置和安全性-cookie及其他网站数据-关闭所有窗口时清除cookie及网站数据 处打勾即可。
 
 ## 更新内容
+- ### v2.3.0
+
+    移除旧传递方法，修改内核以适配FF扩展
+
+
 - ### v2.2.3
 
     添加空cookies的处理
