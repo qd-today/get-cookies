@@ -1,7 +1,4 @@
-// Firefox/Chrome API compatibility
-if (typeof browser !== 'undefined' && typeof chrome === 'undefined') {
-    var chrome = browser;
-}
+var browser = browser || chrome;
 
 var listurlarr,format=function(a){
     var b = (a||"192.168.0.111");
@@ -16,16 +13,16 @@ var listurlarr,format=function(a){
     }
     return false
 };
-chrome.storage.sync.get('targeturl',function (a){
+browser.storage.sync.get('targeturl',function (a){
     format(a.targeturl);
 });
-chrome.storage.onChanged.addListener(function(changes, areaName){
+browser.storage.onChanged.addListener(function(changes, areaName){
     if(changes.hasOwnProperty("targeturl")){
         format(changes.targeturl.newValue);
     }
 });
 //全局注册监听
-chrome.runtime.onConnect.addListener((port) => {
+browser.runtime.onConnect.addListener((port) => {
   handlePort(port);
 });
 function handlePort(port) {
@@ -44,7 +41,7 @@ function handlePort(port) {
             console.log(option1,option2);
             const obj = {};
             const getCookies = (options) => new Promise(resolve => {
-                chrome.cookies.getAll(options, resolve);
+                browser.cookies.getAll(options, resolve);
             });
             Promise.all([getCookies(option1), getCookies(option2)])
                 .then(([cookies1, cookies2]) => {
@@ -64,9 +61,9 @@ function handlePort(port) {
         }
     });
 };
-chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {//tab页面刷新注入脚本
+browser.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {//tab页面刷新注入脚本
     if (changeInfo.status === 'loading' && urlcheck(tab.url)) {
         console.log("tab:",tab);
-        chrome.scripting.executeScript({target: {tabId: tab.id},files: ["js/cookie.js"]});
+        browser.scripting.executeScript({target: {tabId: tab.id},files: ["js/cookie.js"]});
     }
 });

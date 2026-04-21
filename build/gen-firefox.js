@@ -32,6 +32,9 @@ if (firefoxManifest.options_ui) {
   delete firefoxManifest.options_ui.browser_style;
 }
 
+// 移除 Chrome 专用的 incognito（Firefox 不支持 "split" 模式）
+delete firefoxManifest.incognito;
+
 // 添加 Firefox 特定的 browser_specific_settings
 firefoxManifest.browser_specific_settings = {
   gecko: {
@@ -52,10 +55,13 @@ if (!fs.existsSync(firefoxOutputDir)) {
 // 复制所有文件到 firefox/ 目录（除了 manifest.json）
 const filesToCopy = fs.readdirSync(rootDir).filter(f =>
   f !== 'firefox' &&
+  f !== 'chrome' &&
   f !== 'build' &&
   f !== '.git' &&
   f !== 'node_modules' &&
-  f !== 'docs'
+  f !== 'docs' &&
+  f !== 'package.json' &&
+  f !== 'package-lock.json'
 );
 
 filesToCopy.forEach(file => {
