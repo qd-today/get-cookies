@@ -1,3 +1,5 @@
+var browser = browser || chrome;
+
 function onload(func) {
     if (document.readyState === "complete") {
         func();
@@ -13,7 +15,7 @@ onload(function() {
     window.addEventListener('click', function(event) {
         var export_btn = event.target;
         if (export_btn.getAttribute("data-toggle") == "get-cookie") {
-            var port = chrome.runtime.connect({name: "get_cookie"});
+            var port = browser.runtime.connect({name: "get_cookie"});
             var site = export_btn.getAttribute("data-site");
             var name = export_btn.getAttribute("data-name");
             var domain = export_btn.getAttribute("data-domain");
@@ -32,4 +34,3 @@ onload(function() {
         }
     },false);
 });
-

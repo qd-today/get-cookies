@@ -1,0 +1,76 @@
+name: Build Extensions
+
+on:
+  push:
+    branches: [main, firefox-support]
+    tags: ['v*']
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Build Firefox extension
+        run: npm run build:firefox
+
+      - name: Build Chrome extension
+        run: npm run build:chrome
+
+      - name: Verify Chrome manifest
+        run: |
+          node -e "const m = require('./manifest.json'); console.log('Chrome manifest OK:', m.version);"
+
+      - name: Verify Firefox manifest
+        run: |
+          node -e "const m = require('./manifest-firefox.json'); console.log('Firefox manifest OK:', m.version);"
+
+      - name: Upload Firefox build
+        uses: actions/upload-artifact@v4
+        if: ${{ !startsWith(github.ref, 'refs/tags/') }}
+        with:
+          name: get-cookies-firefox
+          path: firefox/
+          retention-days: 7
+
+      - name: Upload Chrome build
+        uses: actions/upload-artifact@v4
+        if: ${{ !startsWith(github.ref, 'refs/tags/') }}
+        with:
+          name: get-cookies-chrome
+          path: chrome/
+          retention-days: 7
+
+      - name: Package Firefox extension
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          cd firefox
+          zip -r ../GetCookies.${{ github.ref_name }}-firefox.xpi .
+          cd ..
+
+      - name: Package Chrome extension
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          cd chrome
+          zip -r ../GetCookies.${{ github.ref_name }}-chrome.zip .
+          cd ..
+
+      - name: Upload release assets
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            GetCookies.${{ github.ref_name }}-firefox.xpi
+            GetCookies.${{ github.ref_name }}-chrome.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
