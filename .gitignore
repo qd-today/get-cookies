@@ -1,1 +1,7 @@
 .lh
+firefox/
+chrome/
+manifest-firefox.json
+/node_modules
+AGENTS.md
+docs/
