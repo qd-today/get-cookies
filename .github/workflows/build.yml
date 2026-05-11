@@ -2,10 +2,16 @@ name: Build Extensions
 
 on:
   push:
-    branches: [main, firefox-support]
-    tags: ['v*']
+    branches:
+      - main
+      - develop
+    tags:
+      - 'v*'
   pull_request:
-    branches: [main]
+    branches:
+      - main
+      - develop
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -33,7 +39,7 @@ jobs:
 
       - name: Verify Firefox manifest
         run: |
-          node -e "const m = require('./manifest-firefox.json'); console.log('Firefox manifest OK:', m.version);"
+          node -e "const m = require('./firefox/manifest.json'); console.log('Firefox manifest OK:', m.version);"
 
       - name: Upload Firefox build
         uses: actions/upload-artifact@v4
@@ -55,14 +61,14 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         run: |
           cd firefox
-          zip -r ../GetCookies.${{ github.ref_name }}-firefox.xpi .
+          zip -r ../GetCookies.${{ github.ref_name }}-firefox-nosign.zip .
           cd ..
 
       - name: Package Chrome extension
         if: startsWith(github.ref, 'refs/tags/')
         run: |
           cd chrome
-          zip -r ../GetCookies.${{ github.ref_name }}-chrome.zip .
+          zip -r ../GetCookies.${{ github.ref_name }}-chrome-nosign.zip .
           cd ..
 
       - name: Upload release assets
@@ -70,7 +76,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            GetCookies.${{ github.ref_name }}-firefox.xpi
-            GetCookies.${{ github.ref_name }}-chrome.zip
+            GetCookies.${{ github.ref_name }}-firefox-nosign.zip
+            GetCookies.${{ github.ref_name }}-chrome-nosign.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

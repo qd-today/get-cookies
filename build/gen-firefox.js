@@ -5,7 +5,8 @@ const path = require('path');
 
 const rootDir = path.resolve(__dirname, '..');
 const chromeManifestPath = path.join(rootDir, 'manifest.json');
-const firefoxManifestPath = path.join(rootDir, 'manifest-firefox.json');
+//取消，重复生成manifest-firefox.json，Firefox使用manifest.json
+//const firefoxManifestPath = path.join(rootDir, 'manifest-firefox.json');
 const firefoxOutputDir = path.join(rootDir, 'firefox');
 
 // 读取 Chrome manifest
@@ -20,7 +21,7 @@ delete firefoxManifest.update_url;
 // 移除 Chrome 专用的 key 字段
 delete firefoxManifest.key;
 
-// 将 service_worker 改为 scripts（Firefox MV3 使用 scripts）
+// 将 service_worker 改为 scripts（Firefox MV3 使用 scripts。其暂不支持service_worker）
 if (firefoxManifest.background && firefoxManifest.background.service_worker) {
   firefoxManifest.background = {
     scripts: [firefoxManifest.background.service_worker]
@@ -36,16 +37,24 @@ if (firefoxManifest.options_ui) {
 delete firefoxManifest.incognito;
 
 // 添加 Firefox 特定的 browser_specific_settings
+// 重写规范，按照最新的Mozilla AMO 新规商店签名必须附带个人数据隐私说明
+// 同时需注意。目前最小版本109的Firefox MV3并不完善、且可能会有兼容性警告，建议升级到140以上，因为只有140以上才支持data_collection_permissions
 firefoxManifest.browser_specific_settings = {
   gecko: {
     id: "get-cookies@qd-today",
-    strict_min_version: "109.0"
+    strict_min_version: "109.0",
+    "data_collection_permissions": {
+      "required": [
+        "none"
+      ]
+    }
   }
 };
 
+// 取消生成
 // 写入文件
-fs.writeFileSync(firefoxManifestPath, JSON.stringify(firefoxManifest, null, 3) + '\n');
-console.log('✓ Generated manifest-firefox.json');
+//fs.writeFileSync(firefoxManifestPath, JSON.stringify(firefoxManifest, null, 3) + '\n');
+//console.log('✓ Generated manifest-firefox.json');
 
 // 创建 firefox/ 输出目录并复制所有文件
 if (!fs.existsSync(firefoxOutputDir)) {
@@ -61,7 +70,8 @@ const filesToCopy = fs.readdirSync(rootDir).filter(f =>
   f !== 'node_modules' &&
   f !== 'docs' &&
   f !== 'package.json' &&
-  f !== 'package-lock.json'
+  f !== 'eg1.gif' &&
+  f !== 'README.md'
 );
 
 filesToCopy.forEach(file => {

@@ -7,9 +7,9 @@ const rootDir = path.resolve(__dirname, '..');
 const chromeOutputDir = path.join(rootDir, 'chrome');
 
 // Chrome 版本直接使用根目录的文件，只需打包到 chrome/ 目录
-// 排除构建相关文件和 Firefox 专有文件
+// 排除构建相关文件和 Firefox 专有文件//同时排除github文件
 const excludeDirs = ['firefox', 'chrome', 'build', '.git', 'node_modules', 'docs'];
-const excludeFiles = ['manifest-firefox.json'];
+const excludeFiles = ['manifest-firefox.json', 'eg1.gif', 'package.json', 'README.md'];
 
 if (!fs.existsSync(chromeOutputDir)) {
   fs.mkdirSync(chromeOutputDir, { recursive: true });

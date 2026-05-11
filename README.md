@@ -9,13 +9,13 @@ Docker 容器: <https://hub.docker.com/r/qdtoday/qd>
 ## 浏览器支持
 
 - ✅ Chrome / Chromium (Manifest V3)
-- ✅ Firefox (Manifest V3)
+- ✅ Firefox 109以上 (Manifest V3)
 
 ## 使用方式
 
 ### Chrome
 
-推荐形式：前往Chrome商店安装。（非公开扩展只可链接直达）
+推荐形式：前往Chrome商店安装。（非公开扩展可链接直达）
 [商店页面](https://chromewebstore.google.com/detail/cookies%E8%8E%B7%E5%8F%96%E5%8A%A9%E6%89%8B/mmcdaoockinhaeiljdmjmnjfndpfpklo) 
 
 或者
@@ -26,19 +26,22 @@ Docker 容器: <https://hub.docker.com/r/qdtoday/qd>
 
 ### Firefox
 
-1. 克隆本仓库或下载源码
+推荐形式：前往Firefox商店安装。
+待更新
 
-2. 运行构建脚本生成 Firefox 版本：
+或者
 
-```bash
-npm run build:firefox
-```
+1. 直接前往 [Releases](https://github.com/qd-today/get-cookies/releases/latest) 下载打包好的zip文件
+
+2. 解压到非桌面目录，最好放入Firefox程序文件夹下
 
 3. 打开 Firefox，访问 `about:debugging`
 
 4. 点击"此 Firefox" → "临时载入附加组件"
 
-5. 选择 `firefox/manifest.json` 文件
+5. 选择 解压目录中的`/manifest.json` 文件
+
+### 安装后必须做的设定
 
 > 注意: 使用前进入扩展选项页，根据提示填入 QD 框架对应 `ip或域名` 信息。
 > [这里有参考图例](https://github.com/qd-today/get-cookies/issues/11) 
@@ -57,6 +60,10 @@ npm run build:firefox
 Firefox 用户可以在 `about:addons` 中设置允许在隐私窗口运行。
 
 ## 更新内容
+- ### v2.3.2
+
+    修复资源图标，添加Firefox支持
+
 - ### v2.3.1
 
     支持隐私模式
